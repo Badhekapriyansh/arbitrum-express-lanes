@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Express Lanes — Understanding Arbitrum &amp; Layer 2</title>
+<meta name="description" content="A visual introduction to Ethereum Layer 2 scaling and Arbitrum.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-home">
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="9" width="20" height="3" rx="1.5" fill="#5B8DEF"/>
+        <rect x="2" y="14.5" width="14" height="3" rx="1.5" fill="#FFB454"/>
+        <rect x="2" y="20" width="9" height="1.6" rx="0.8" fill="#345186"/>
+      </svg>
+      Express Lanes<span class="brand-sub">/ L2 primer</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="concepts.html">Concepts</a></li>
+      <li><a href="prices.html">Live Prices</a></li>
+      <li><a href="simulator.html">Block Simulator</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="wrap hero">
+  <div>
+    <div class="eyebrow">Ethereum Layer 2</div>
+    <h1>Same road.<br>More lanes.<br><span>That's Arbitrum.</span></h1>
+    <p class="hero-lede">
+      Ethereum mainnet is a single lane that every transaction has to share —
+      when traffic builds up, fees spike and confirmations crawl. Arbitrum opens
+      extra lanes on top of that same road, so activity moves faster and
+      cheaper without leaving Ethereum's security behind.
+    </p>
+    <div class="hero-actions">
+      <a href="simulator.html" class="btn btn-primary">Try the block simulator</a>
+      <a href="concepts.html" class="btn btn-ghost">Compare the concepts</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>1 lane</strong><span>Ethereum L1 throughput</span></div>
+      <div><strong>40x+</strong><span>Typical L2 fee reduction</span></div>
+      <div><strong>0</strong><span>New trust assumptions*</span></div>
+    </div>
+  </div>
+
+  <div class="lane-visual" aria-hidden="true">
+    <div class="lane-label"><span>MAINNET (L1)</span><span>1 lane</span></div>
+    <div class="lane-road">
+      <div class="lane-row l1"><div class="lane-dashes"></div></div>
+    </div>
+    <div class="lane-label" style="margin-top:18px;"><span>ARBITRUM (L2)</span><span>3+ lanes</span></div>
+    <div class="lane-road">
+      <div class="lane-row l2-a"><div class="lane-dashes"></div></div>
+      <div class="lane-row l2-b"><div class="lane-dashes"></div></div>
+      <div class="lane-row l2-c"><div class="lane-dashes"></div></div>
+    </div>
+    <div class="lane-caption"><span>Slower · pricier</span><span>Faster · cheaper</span></div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Why it matters</div>
+      <h2>Three things Layer 2 actually changes</h2>
+      <p>Not marketing points — the concrete mechanics that make Arbitrum useful for a builder.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        </div>
+        <h3>Lower fees</h3>
+        <p>Transactions are batched and their proofs settled back to Ethereum, so the cost of mainnet security is split across thousands of users instead of paid by each one.</p>
+      </div>
+      <div class="card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h3>Faster confirmations</h3>
+        <p>Arbitrum's sequencer can confirm a transaction in a fraction of a second, well before that batch is ever posted and finalized on L1.</p>
+      </div>
+      <div class="card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6l-8-3z"/></svg>
+        </div>
+        <h3>Inherited security</h3>
+        <p>Arbitrum doesn't run its own separate trust model — it's a rollup, so disputes and final settlement are still enforced by Ethereum's validators.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="arbitrum">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Arbitrum, in three steps</div>
+      <h2>Why Ethereum needed Layer 2 — and how Arbitrum answers it</h2>
+      <p>Ethereum mainnet intentionally keeps block space scarce to stay decentralized and secure. That scarcity is exactly what makes it slow and expensive during busy periods — the problem Layer 2s exist to solve.</p>
+    </div>
+    <div class="explainer">
+      <div class="card">
+        <span class="step-tag">01 — The problem</span>
+        <h3>One shared lane</h3>
+        <p>Every Ethereum node processes every transaction. That's what keeps the network trustworthy, but it also caps how many transactions can fit in each block — so demand routinely outpaces supply.</p>
+      </div>
+      <div class="card">
+        <span class="step-tag">02 — The fix</span>
+        <h3>Execute off-chain, settle on-chain</h3>
+        <p>Arbitrum runs transactions on its own faster chain, then compresses thousands of them into a single batch and posts that batch — plus a proof it's valid — back to Ethereum.</p>
+      </div>
+      <div class="card">
+        <span class="step-tag">03 — The benefit</span>
+        <h3>Real-world win: cheap, frequent actions</h3>
+        <p>Something like swapping tokens or minting an NFT that might cost several dollars on mainnet during peak times often costs a few cents on Arbitrum, with the same underlying security guarantees.</p>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--text-faint); margin-top:18px;">*Arbitrum adds a fraud-proof window and relies on its sequencer for ordering — it doesn't introduce a new validator set, but it isn't identical to using L1 directly either.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>Built by <strong>Priyansh Badheka</strong> for Arbitrum Builder Pods — Batch <strong>X1</strong></div>
+    <div class="footer-links">
+      <a href="https://github.com/Badhekapriyansh" target="_blank" rel="noopener">GitHub</a>
+      <a href="concepts.html">Concepts</a>
+      <a href="prices.html">Live Prices</a>
+      <a href="simulator.html">Simulator</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

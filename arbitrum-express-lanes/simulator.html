@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block Simulator — Express Lanes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page-simulator">
+
+  <nav class="site-nav">
+    <div class="wrap">
+      <a href="index.html" class="brand">
+        <svg class="brand-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="9" width="20" height="3" rx="1.5" fill="#5B8DEF" />
+          <rect x="2" y="14.5" width="14" height="3" rx="1.5" fill="#FFB454" />
+          <rect x="2" y="20" width="9" height="1.6" rx="0.8" fill="#345186" />
+        </svg>
+        Express Lanes<span class="brand-sub">/ L2 primer</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="concepts.html">Concepts</a></li>
+        <li><a href="prices.html">Live Prices</a></li>
+        <li><a href="simulator.html" class="active">Block Simulator</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="wrap page-head">
+    <div class="eyebrow">Hands-on · SHA-256</div>
+    <h1>Block Simulator</h1>
+    <p>Mine two linked blocks in your browser using the real Web Crypto SHA-256 implementation. Change Block 1's data
+      after mining and watch Block 2 break — that's chain immutability in action.</p>
+  </header>
+
+  <section class="wrap" style="padding-bottom: 70px;">
+    <div class="block-chain">
+
+      <div class="block-card" id="block1Card">
+        <div class="block-card-head">
+          <h3>Block 1</h3>
+          <span class="status-pill pending" id="block1Status">Not mined</span>
+        </div>
+
+        <div class="field">
+          <label for="block1Data">Block data</label>
+          <textarea id="block1Data" rows="2">Alice pays Bob 2 ETH</textarea>
+        </div>
+        <div class="field">
+          <label for="block1PrevHash">Previous hash</label>
+          <input type="text" id="block1PrevHash" value="0000000000000000000000000000000000000000000000000000000000000"
+            readonly>
+        </div>
+        <div class="field">
+          <label for="block1Nonce">Nonce</label>
+          <input type="text" id="block1Nonce" value="0" readonly>
+        </div>
+        <div class="field">
+          <label>Resulting hash</label>
+          <div class="hash-value" id="block1Hash">—</div>
+        </div>
+
+        <div class="block-actions">
+          <button class="btn btn-primary" id="mineBlock1">&#9889; Mine Block 1</button>
+        </div>
+        <div class="mining-meta" id="block1Meta"></div>
+      </div>
+
+      <div class="chain-link">&#8594;</div>
+
+      <div class="block-card" id="block2Card">
+        <div class="block-card-head">
+          <h3>Block 2</h3>
+          <span class="status-pill pending" id="block2Status">Not mined</span>
+        </div>
+
+        <div class="field">
+          <label for="block2Data">Block data</label>
+          <textarea id="block2Data" rows="2">Bob pays Carol 0.5 ETH</textarea>
+        </div>
+        <div class="field">
+          <label for="block2PrevHash">Previous hash (from Block 1)</label>
+          <input type="text" id="block2PrevHash" value="—" readonly>
+        </div>
+        <div class="field">
+          <label for="block2Nonce">Nonce</label>
+          <input type="text" id="block2Nonce" value="0" readonly>
+        </div>
+        <div class="field">
+          <label>Resulting hash</label>
+          <div class="hash-value" id="block2Hash">—</div>
+        </div>
+
+        <div class="block-actions">
+          <button class="btn btn-primary" id="mineBlock2" disabled>&#9889; Mine Block 2</button>
+        </div>
+        <div class="mining-meta" id="block2Meta">Mine Block 1 first — Block 2 needs its hash.</div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <strong>How "mining" works here:</strong> the button repeatedly increments the nonce and re-hashes
+      <code>previousHash + data + nonce</code> with SHA-256 until the output starts with <code>00</code>
+      (a simplified stand-in for Bitcoin/Ethereum's real proof-of-work target). Block 2 stores Block 1's
+      hash as its own "previous hash" field — so editing Block 1's data after the fact changes Block 1's
+      hash, which no longer matches what Block 2 has on record, and Block 2 flips to <strong>Invalid</strong>.
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>Built by <strong>Priyansh Badheka.</strong> for Arbitrum Builder Pods — Batch <strong>X1</strong></div>
+      <div class="footer-links">
+        <a href="https://github.com/Badhekapriyansh" target="_blank" rel="noopener">GitHub</a>
+        <a href="index.html">Home</a>
+        <a href="concepts.html">Concepts</a>
+        <a href="prices.html">Live Prices</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script src="js/simulator.js"></script>
+</body>
+
+</html>
